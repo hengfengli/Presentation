@@ -1,0 +1,50 @@
+#slides_firstSlide h1 {
+	display: table-cell;
+	font-size: 50px;
+	height: 450px;
+	line-height: 180%;
+	/* margin-top: 100px; */
+	/* margin-bottom: 100px; */
+	text-align: center;
+	vertical-align: middle;
+	width: 900px;
+
+	font-family: 'Lucida Grande';
+	margin-left: 30px;
+	margin-right: 30px;
+	overflow: hidden;
+	text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#reveal section .logo_baidu {
+	height: 58px;
+	margin-bottom: 30px;
+}
+
+#reveal section .logo_baidu img{
+	float: right;
+	height: 58px;
+	margin: 0px;
+	border: none;
+	background: transparent;
+	box-shadow: none;
+}
+
+#reveal section h2 {
+	font-size: 40px;
+}
+
+#reveal section h3 {
+	font-size: 30px;
+}
+
+#reveal section .insert_picture img{
+	margin-top: 0px;
+	border-radius: 10px;
+	border: none;
+	
+}
+
+#reveal section .custom_content {
+	margin-top: 100px;
+}

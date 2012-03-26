@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2010 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  Original slides: Marcin Wichary (mwichary@google.com)
+  Modifications: Ernest Delgado (ernestd@google.com)
+                 Alex Russell (slightlyoff@chromium.org)
+
+  landslide modifications: Adam Zapletal (adamzap@gmail.com)
+                           Nicolas Perriault (nperriault@gmail.com)
+-->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>CoffeeScript介绍</title>
+    <!-- Styles -->
+    <link rel="stylesheet" href="coffee-presentation-print.css" media="print" >
+    <link rel="stylesheet" href="coffee-presentation-screen.css" media="screen, projection">
+    <link rel="stylesheet" href="custom.css" media="screen" >
+    <link rel="stylesheet" href="code.css" media="screen" >
+    
+    <!-- /Styles -->
+    <!-- Javascripts -->
+    
+    <script type="text/javascript" src="coffee-presentation.js"></script>
+    
+    <!-- /Javascripts -->
+</head>
+<body>
+  <div class="presentation">
+    <div class="slides">
+      
+      <!-- slide source: lab-week1.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>CoffeeScript 介绍</h1></header>
+          
+        </div>
+
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/aaron/uni/ed/620/slides/lab-week1.md">lab-week1.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            1/10
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: lab-week1.md -->
+      <div class="slide">
+        <div id="main_content" class="inner">
+          
+          <header ><h1>主要内容</h1></header>
+                   
+          <section><h2>
+            <ol>
+              <li>什么是CoffeeScript？</li>
+              <li>特性与优点</li>
+              <li>与主流JS框架结合</li>
+            </ol>    
+          </h2></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/aaron/uni/ed/620/slides/lab-week1.md">lab-week1.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            2/10
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: lab-week1.md -->
+      <div class="slide">
+        <div id="intro" class="inner">
+          
+          <header><h1>1. 什么是CoffeeScript？</h1></header>
+          
+          
+          <section>
+          <p>CoffeeScript是一个使用纯Ruby编写的新编程语言，创建者Jeremy Ashkenas戏称它是JavaScript的不那么卖弄的小兄弟。</p>
+          <p>CoffeeScript会将编写的代码编译成JavaScript，也就是说将JavaScript当成一种中间语言。</p>
+          <p>CoffeeScript用一种简单的方式来呈现JavaScript的Good Parts，编译后的代码可以无警告地通过JavaScript Lint的检查。</p>
+          <p><strong>注意：</strong>最初的编译器确实是由Ruby所写，但是v0.5.0之后，都是用CoffeeScript自身来编写。实际上，利用旧版本的编译器，编译出一个拥有更多特性，新版本的编译器，这个过程叫Bootstrapping。</p>
+          </section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/aaron/uni/ed/620/slides/lab-week1.md">lab-week1.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            3/10
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: lab-week1.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>基本语法——函数</h1></header>
+          
+          
+          <section class="part1">
+          <p>函数的定义用"->"来声明，返回值为最后一行。</p>
+<div class="highlight">
+
+<pre><span class="nv">square = </span><span class="nf">(x) -&gt;</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">x</span>
+<span class="nv">cube   = </span><span class="nf">(x) -&gt;</span> <span class="nx">square</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="o">*</span> <span class="nx">x</span>
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="nv">fill = </span><span class="nf">(container, liquid = &quot;coffee&quot;) -&gt;</span>
+  <span class="s2">&quot;Filling the #{container} with #{liquid}...&quot;</span>
+</pre>
+
+<pre>
+<span class="kd">var</span> <span class="nx">cube</span><span class="p">,</span> <span class="nx">square</span><span class="p">;</span>
+
+<span class="nx">square</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">x</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="nx">cube</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">square</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="o">*</span> <span class="nx">x</span><span class="p">;</span>
+<span class="p">};</span>
+
+
+
+
+
+<span class="kd">var</span> <span class="nx">fill</span><span class="p">;</span>
+
+<span class="nx">fill</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">container</span><span class="p">,</span> <span class="nx">liquid</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">liquid</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="nx">liquid</span> <span class="o">=</span> <span class="s2">&quot;coffee&quot;</span><span class="p">;</span>
+  <span class="k">return</span> <span class="s2">&quot;Filling the &quot;</span> <span class="o">+</span> <span class="nx">container</span> <span class="o">+</span> <span class="s2">&quot; with &quot;</span> 
+         <span class="o">+</span> <span class="nx">liquid</span> <span class="o">+</span> <span class="s2">&quot;...&quot;</span><span class="p">;</span>
+<span class="p">};</span>
+</pre>
+
+
+</div>
+<p>注意：左边为CoffeeScript，右边为编译后的JavaScript。</p>
+          </section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/aaron/uni/ed/620/slides/lab-week1.md">lab-week1.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            4/10
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: lab-week1.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>基本语法——数组和对象</h1></header>
+          
+          
+          <section class="part1">
+          <p>CoffeeScript跟Ruby和Python一样依靠缩进控制代码块。</p>
+<div class="highlight">
+
+<pre><span class="nv">song = </span><span class="p">[</span><span class="s2">&quot;do&quot;</span><span class="p">,</span> <span class="s2">&quot;re&quot;</span><span class="p">,</span> <span class="s2">&quot;mi&quot;</span><span class="p">,</span> <span class="s2">&quot;fa&quot;</span><span class="p">,</span> <span class="s2">&quot;so&quot;</span><span class="p">]</span>
+
+<span class="nv">singers = </span><span class="p">{</span><span class="nv">Jagger: </span><span class="s2">&quot;Rock&quot;</span><span class="p">,</span> <span class="nv">Elvis: </span><span class="s2">&quot;Roll&quot;</span><span class="p">}</span>
+
+<span class="nv">bitlist = </span><span class="p">[</span>
+  <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+  <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+  <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span>
+<span class="p">]</span>
+
+<span class="nv">kids =</span>
+  <span class="nv">brother:</span>
+    <span class="nv">name: </span><span class="s2">&quot;Max&quot;</span>
+    <span class="nv">age: </span> <span class="mi">11</span>
+  <span class="nv">sister:</span>
+    <span class="nv">name: </span><span class="s2">&quot;Ida&quot;</span>
+    <span class="nv">age: </span> <span class="mi">9</span>
+</pre>
+
+
+<pre>
+<span class="kd">var</span> <span class="nx">bitlist</span><span class="p">,</span> <span class="nx">kids</span><span class="p">,</span> <span class="nx">singers</span><span class="p">,</span> <span class="nx">song</span><span class="p">;</span>
+
+<span class="nx">song</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;do&quot;</span><span class="p">,</span> <span class="s2">&quot;re&quot;</span><span class="p">,</span> <span class="s2">&quot;mi&quot;</span><span class="p">,</span> <span class="s2">&quot;fa&quot;</span><span class="p">,</span> <span class="s2">&quot;so&quot;</span><span class="p">];</span>
+
+<span class="nx">singers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">Jagger</span><span class="o">:</span> <span class="s2">&quot;Rock&quot;</span><span class="p">,</span>
+  <span class="nx">Elvis</span><span class="o">:</span> <span class="s2">&quot;Roll&quot;</span>
+<span class="p">};</span>
+
+<span class="nx">bitlist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">];</span>
+
+<span class="nx">kids</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">brother</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Max&quot;</span><span class="p">,</span>
+    <span class="nx">age</span><span class="o">:</span> <span class="mi">11</span>
+  <span class="p">},</span>
+  <span class="nx">sister</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Ida&quot;</span><span class="p">,</span>
+    <span class="nx">age</span><span class="o">:</span> <span class="mi">9</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</pre>
+
+
+</div>
+
+          </section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/aaron/uni/ed/620/slides/lab-week1.md">lab-week1.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            5/10
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: lab-week1.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          
+          <header><h1>基本语法——作用域与变量安全</h1></header>
+          
+          
+          <section class="part1">
+<div class="highlight">
+
+<pre><span class="nv">outer = </span><span class="mi">1</span>
+<span class="nv">changeNumbers = </span><span class="o">-&gt;</span>
+  <span class="nv">inner = </span><span class="o">-</span><span class="mi">1</span>
+  <span class="nv">outer = </span><span class="mi">10</span>
+<span class="nv">inner = </span><span class="nx">changeNumbers</span><span class="p">()</span>
+
+</pre>
+
+
+<pre>
+<span class="kd">var</span> <span class="nx">changeNumbers</span><span class="p">,</span> <span class="nx">inner</span><span class="p">,</span> <span class="nx">outer</span><span class="p">;</span>
+
+<span class="nx">outer</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="nx">changeNumbers</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">inner</span><span class="p">;</span>
+  <span class="nx">inner</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">outer</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="nx">inner</span> <span class="o">=</span> <span class="nx">changeNumbers</span><span class="p">();</span>
+
+</pre>
+
+
+</div>
+
+          </section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/aaron/uni/ed/620/slides/lab-week1.md">lab-week1.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            6/10
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: lab-week1.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>基本语法——条件赋值</h1></header>
+          
+          
+          <section class="part1">
+<div class="highlight">
+
+<pre><span class="nv">mood = </span><span class="nx">greatlyImproved</span> <span class="k">if</span> <span class="nx">singing</span>
+
+<span class="k">if</span> <span class="nx">happy</span> <span class="o">and</span> <span class="nx">knowsIt</span>
+  <span class="nx">clapsHands</span><span class="p">()</span>
+  <span class="nx">chaChaCha</span><span class="p">()</span>
+<span class="k">else</span>
+  <span class="nx">showIt</span><span class="p">()</span>
+
+<span class="nv">date = </span><span class="k">if</span> <span class="nx">friday</span> <span class="k">then</span> <span class="nx">sue</span> <span class="k">else</span> <span class="nx">jill</span>
+
+<span class="nx">options</span> <span class="o">or=</span> <span class="nx">defaults</span>
+
+</pre>
+
+
+<pre>
+<span class="kd">var</span> <span class="nx">date</span><span class="p">,</span> <span class="nx">mood</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">singing</span><span class="p">)</span> <span class="nx">mood</span> <span class="o">=</span> <span class="nx">greatlyImproved</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">happy</span> <span class="o">&amp;&amp;</span> <span class="nx">knowsIt</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">clapsHands</span><span class="p">();</span>
+  <span class="nx">chaChaCha</span><span class="p">();</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="nx">showIt</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nx">date</span> <span class="o">=</span> <span class="nx">friday</span> <span class="o">?</span> <span class="nx">sue</span> <span class="o">:</span> <span class="nx">jill</span><span class="p">;</span>
+
+<span class="nx">options</span> <span class="o">||</span> <span class="p">(</span><span class="nx">options</span> <span class="o">=</span> <span class="nx">defaults</span><span class="p">);</span>
+
+</pre>
+
+
+</div>
+
+          </section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/aaron/uni/ed/620/slides/lab-week1.md">lab-week1.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            7/10
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: lab-week1.md -->
+      <div class="slide has_code">
+        <div class="inner">
+          
+          <header><h1>基本语法——Arguments</h1></header>
+          
+          
+          <section class="part1">
+<div class="highlight">
+
+<pre><span class="nv">gold = silver = rest = </span><span class="s2">&quot;unknown&quot;</span>
+
+<span class="nv">awardMedals = </span><span class="nf">(first, second, others...) -&gt;</span>
+  <span class="nv">gold   = </span><span class="nx">first</span>
+  <span class="nv">silver = </span><span class="nx">second</span>
+  <span class="nv">rest   = </span><span class="nx">others</span>
+
+<span class="nv">contenders = </span><span class="p">[</span>
+  <span class="s2">&quot;Michael Phelps&quot;</span>
+  <span class="s2">&quot;Liu Xiang&quot;</span>
+  <span class="s2">&quot;Yao Ming&quot;</span>
+  <span class="s2">&quot;Allyson Felix&quot;</span>
+  <span class="s2">&quot;Shawn Johnson&quot;</span>
+  <span class="s2">&quot;Roman Sebrle&quot;</span>
+  <span class="s2">&quot;Guo Jingjing&quot;</span>
+  <span class="s2">&quot;Tyson Gay&quot;</span>
+  <span class="s2">&quot;Asafa Powell&quot;</span>
+  <span class="s2">&quot;Usain Bolt&quot;</span>
+<span class="p">]</span>
+
+<span class="nx">awardMedals</span> <span class="nx">contenders</span><span class="p">...</span>
+
+<span class="nx">alert</span> <span class="s2">&quot;Gold: &quot;</span> <span class="o">+</span> <span class="nx">gold</span>
+<span class="nx">alert</span> <span class="s2">&quot;Silver: &quot;</span> <span class="o">+</span> <span class="nx">silver</span>
+<span class="nx">alert</span> <span class="s2">&quot;The Field: &quot;</span> <span class="o">+</span> <span class="nx">rest</span>
+</pre>
+
+
+<pre>
+<span class="kd">var</span> <span class="nx">awardMedals</span><span class="p">,</span> <span class="nx">contenders</span><span class="p">,</span> <span class="nx">gold</span><span class="p">,</span> <span class="nx">rest</span><span class="p">,</span> <span class="nx">silver</span><span class="p">,</span>
+  <span class="nx">__slice</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">;</span>
+
+<span class="nx">gold</span> <span class="o">=</span> <span class="nx">silver</span> <span class="o">=</span> <span class="nx">rest</span> <span class="o">=</span> <span class="s2">&quot;unknown&quot;</span><span class="p">;</span>
+
+<span class="nx">awardMedals</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">first</span><span class="p">,</span> <span class="nx">others</span><span class="p">,</span> <span class="nx">second</span><span class="p">;</span>
+  <span class="nx">first</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">second</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> 
+  <span class="nx">others</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">&lt;=</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span> <span class="o">?</span> 
+           <span class="nx">__slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">:</span> <span class="p">[];</span>
+  <span class="nx">gold</span> <span class="o">=</span> <span class="nx">first</span><span class="p">;</span>
+  <span class="nx">silver</span> <span class="o">=</span> <span class="nx">second</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">rest</span> <span class="o">=</span> <span class="nx">others</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="nx">contenders</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Michael Phelps&quot;</span><span class="p">,</span> <span class="s2">&quot;Liu Xiang&quot;</span><span class="p">,</span> 
+<span class="s2">&quot;Yao Ming&quot;</span><span class="p">,</span> <span class="s2">&quot;Allyson Felix&quot;</span><span class="p">,</span> <span class="s2">&quot;Shawn Johnson&quot;</span><span class="p">,</span> 
+<span class="s2">&quot;Roman Sebrle&quot;</span><span class="p">,</span> <span class="s2">&quot;Guo Jingjing&quot;</span><span class="p">,</span> <span class="s2">&quot;Tyson Gay&quot;</span><span class="p">,</span> 
+<span class="s2">&quot;Asafa Powell&quot;</span><span class="p">,</span> <span class="s2">&quot;Usain Bolt&quot;</span><span class="p">];</span>
+
+<span class="nx">awardMedals</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">contenders</span><span class="p">);</span>
+
+<span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Gold: &quot;</span> <span class="o">+</span> <span class="nx">gold</span><span class="p">);</span>
+
+<span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Silver: &quot;</span> <span class="o">+</span> <span class="nx">silver</span><span class="p">);</span>
+
+<span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;The Field: &quot;</span> <span class="o">+</span> <span class="nx">rest</span><span class="p">);</span>
+</pre>
+
+
+</div>
+
+          </section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/aaron/uni/ed/620/slides/lab-week1.md">lab-week1.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            8/10
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: lab-week1.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>基本语法——Loops & Comprehension</h1></header>
+          
+          
+          <section class="part1">
+<div class="highlight">
+
+<pre><span class="nv">countdown = </span><span class="p">(</span><span class="nx">num</span> <span class="k">for</span> <span class="nx">num</span> <span class="k">in</span> <span class="p">[</span><span class="mi">10</span><span class="p">..</span><span class="mi">1</span><span class="p">])</span>
+
+
+
+
+
+
+
+
+
+
+<span class="nv">yearsOld = max: </span><span class="mi">10</span><span class="p">,</span> <span class="nv">ida: </span><span class="mi">9</span><span class="p">,</span> <span class="nv">tim: </span><span class="mi">11</span>
+
+<span class="nv">ages = </span><span class="k">for</span> <span class="nx">child</span><span class="p">,</span> <span class="nx">age</span> <span class="k">of</span> <span class="nx">yearsOld</span>
+  <span class="s2">&quot;#{child} is #{age}&quot;</span>
+</pre>
+
+
+<pre>
+<span class="kd">var</span> <span class="nx">countdown</span><span class="p">,</span> <span class="nx">num</span><span class="p">;</span>
+
+<span class="nx">countdown</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">_results</span><span class="p">;</span>
+  <span class="nx">_results</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="k">for</span> <span class="p">(</span><span class="nx">num</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">num</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">num</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">_results</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">num</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">_results</span><span class="p">;</span>
+<span class="p">})();</span>
+
+<span class="kd">var</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">ages</span><span class="p">,</span> <span class="nx">child</span><span class="p">,</span> <span class="nx">yearsOld</span><span class="p">;</span>
+
+<span class="nx">yearsOld</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">max</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+  <span class="nx">ida</span><span class="o">:</span> <span class="mi">9</span><span class="p">,</span>
+  <span class="nx">tim</span><span class="o">:</span> <span class="mi">11</span>
+<span class="p">};</span>
+
+<span class="nx">ages</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">_results</span><span class="p">;</span>
+  <span class="nx">_results</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="k">for</span> <span class="p">(</span><span class="nx">child</span> <span class="k">in</span> <span class="nx">yearsOld</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">age</span> <span class="o">=</span> <span class="nx">yearsOld</span><span class="p">[</span><span class="nx">child</span><span class="p">];</span>
+    <span class="nx">_results</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="nx">child</span> <span class="o">+</span> <span class="s2">&quot; is &quot;</span> <span class="o">+</span> <span class="nx">age</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">_results</span><span class="p">;</span>
+<span class="p">})();</span>
+</pre>
+
+
+</div>
+
+          </section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/aaron/uni/ed/620/slides/lab-week1.md">lab-week1.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            9/10
+          </aside>
+        </footer>
+      </div>
+
+      <!-- slide source: lab-week1.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>2. 特性与优点——类和继承</h1></header>
+          
+          
+          <section class="part2">
+          <p>CoffeeScript提供了class的结构允许你命名你的类，设置它的父类，赋给它原型属性，定义构造函数。</p>
+<div class="highlight">
+
+<pre><span class="k">class</span> <span class="nx">Animal</span>
+  <span class="nv">constructor: </span><span class="nf">(@name) -&gt;</span>
+
+  <span class="nv">move: </span><span class="nf">(meters) -&gt;</span>
+    <span class="nx">alert</span> <span class="nx">@name</span> <span class="o">+</span> <span class="s2">&quot; moved #{meters}m.&quot;</span>
+
+<span class="k">class</span> <span class="nx">Snake</span> <span class="k">extends</span> <span class="nx">Animal</span>
+  <span class="nv">move: </span><span class="o">-&gt;</span>
+    <span class="nx">alert</span> <span class="s2">&quot;Slithering...&quot;</span>
+    <span class="k">super</span> <span class="mi">5</span>
+
+<span class="k">class</span> <span class="nx">Horse</span> <span class="k">extends</span> <span class="nx">Animal</span>
+  <span class="nv">move: </span><span class="o">-&gt;</span>
+    <span class="nx">alert</span> <span class="s2">&quot;Galloping...&quot;</span>
+    <span class="k">super</span> <span class="mi">45</span>
+
+<span class="nv">sam = </span><span class="k">new</span> <span class="nx">Snake</span> <span class="s2">&quot;Sammy the Python&quot;</span>
+<span class="nv">tom = </span><span class="k">new</span> <span class="nx">Horse</span> <span class="s2">&quot;Tommy the Palomino&quot;</span>
+
+<span class="nx">sam</span><span class="p">.</span><span class="nx">move</span><span class="p">()</span>
+<span class="nx">tom</span><span class="p">.</span><span class="nx">move</span><span class="p">()</span>
+</pre>
+
+</div>
+
+          </section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/aaron/uni/ed/620/slides/lab-week1.md">lab-week1.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            9/10
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: lab-week1.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>2. 特性与优点——类和继承</h1></header>
+          
+          
+          <section class="part2">
+
+<div class="highlight" style="width: 610px;">
+
+<pre><span class="k">class</span> <span class="nx">Shape</span>
+  <span class="nv">constructor: </span><span class="nf">(@width) -&gt;</span>
+  <span class="nv">computeArea: </span><span class="o">-&gt;</span> 
+    <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;I am an abstract class!&#39;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nx">Square</span> <span class="k">extends</span> <span class="nx">Shape</span>
+  <span class="nv">computeArea: </span><span class="o">-&gt;</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span> <span class="nx">@width</span><span class="p">,</span> <span class="mi">2</span>
+ 
+<span class="k">class</span> <span class="nx">Circle</span> <span class="k">extends</span> <span class="nx">Shape</span>
+  <span class="nv">radius: </span><span class="o">-&gt;</span> <span class="nx">@width</span> <span class="err">/ 2</span>
+  <span class="nv">computeArea: </span><span class="o">-&gt;</span> 
+    <span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span> <span class="o">*</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span> <span class="nx">@radius</span><span class="p">(),</span> <span class="mi">2</span>
+  <span class="nv">showArea = </span><span class="nf">(shape) -&gt;</span>
+    <span class="nx">unless</span> <span class="nx">shape</span> <span class="k">instanceof</span> <span class="nx">Shape</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;showArea requires a Shape instance!&#39;</span><span class="p">)</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">shape</span><span class="p">.</span><span class="nx">computeArea</span><span class="p">()</span>
+
+<span class="nx">showArea</span> <span class="k">new</span> <span class="nx">Square</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># 4</span>
+<span class="nx">showArea</span> <span class="k">new</span> <span class="nx">Circle</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># pi</span>
+</pre>
+
+</div>
+
+          </section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/aaron/uni/ed/620/slides/lab-week1.md">lab-week1.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            9/10
+          </aside>
+        </footer>
+      </div>
+
+      <!-- slide source: lab-week1.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>2.特性与优点—只保留JS中Good Parts</h1></header>
+               
+          <section class="part2_1">
+<div class="highlight">
+
+<pre><span class="nv">Account = </span><span class="nf">(customer, cart) -&gt;</span>
+  <span class="vi">@customer = </span><span class="nx">customer</span>
+  <span class="vi">@cart = </span><span class="nx">cart</span>
+
+  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.shopping_cart&#39;</span><span class="p">).</span><span class="nx">bind</span> <span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="nx">@customer</span><span class="p">.</span><span class="nx">purchase</span> <span class="nx">@cart</span>
+
+</pre>
+
+
+<pre>
+<span class="kd">var</span> <span class="nx">Account</span><span class="p">;</span>
+
+<span class="nx">Account</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">customer</span><span class="p">,</span> <span class="nx">cart</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">_this</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">customer</span> <span class="o">=</span> <span class="nx">customer</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">cart</span> <span class="o">=</span> <span class="nx">cart</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.shopping_cart&#39;</span><span class="p">).</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> 
+    <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">_this</span><span class="p">.</span><span class="nx">customer</span><span class="p">.</span><span class="nx">purchase</span><span class="p">(</span><span class="nx">_this</span><span class="p">.</span><span class="nx">cart</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">};</span>
+
+</pre>
+
+</div>
+
+<p>在JavaScript中，this关键字会动态地指向当前函数所属的对象。如果你把一个函数作为回调函数传给不同的对象，那么原来this所指向的值将会丢失。</p>
+
+<p>CoffeeScript提供了一个"=>"来解决这个问题，如果函数通过"=>"来创建，那么这个函数则能直接访问函数定义时的this的属性，不会随着不同的所属对象造成this指向的不同。</p>
+
+          </section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/aaron/uni/ed/620/slides/lab-week1.md">lab-week1.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            9/10
+          </aside>
+        </footer>
+      </div>
+
+      <!-- slide source: lab-week1.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>2.特性与优点—减少代码，易读</h1></header>
+          
+          
+          <section class="part1">
+<div class="highlight">
+
+<pre>
+<span class="k">switch</span> <span class="nx">day</span>
+  <span class="k">when</span> <span class="s2">&quot;Mon&quot;</span> <span class="k">then</span> <span class="nx">go</span> <span class="nx">work</span>
+  <span class="k">when</span> <span class="s2">&quot;Tue&quot;</span> <span class="k">then</span> <span class="nx">go</span> <span class="nx">relax</span>
+  <span class="k">when</span> <span class="s2">&quot;Thu&quot;</span> <span class="k">then</span> <span class="nx">go</span> <span class="nx">iceFishing</span>
+  <span class="k">when</span> <span class="s2">&quot;Fri&quot;</span><span class="p">,</span> <span class="s2">&quot;Sat&quot;</span>
+    <span class="k">if</span> <span class="nx">day</span> <span class="o">is</span> <span class="nx">bingoDay</span>
+      <span class="nx">go</span> <span class="nx">bingo</span>
+      <span class="nx">go</span> <span class="nx">dancing</span>
+  <span class="k">when</span> <span class="s2">&quot;Sun&quot;</span> <span class="k">then</span> <span class="nx">go</span> <span class="nx">church</span>
+  <span class="k">else</span> <span class="nx">go</span> <span class="nx">work</span>
+</pre>
+
+
+<pre>
+<span class="k">switch</span> <span class="p">(</span><span class="nx">day</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">case</span> <span class="s2">&quot;Mon&quot;</span><span class="o">:</span>
+    <span class="nx">go</span><span class="p">(</span><span class="nx">work</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="s2">&quot;Tue&quot;</span><span class="o">:</span>
+    <span class="nx">go</span><span class="p">(</span><span class="nx">relax</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="s2">&quot;Thu&quot;</span><span class="o">:</span>
+    <span class="nx">go</span><span class="p">(</span><span class="nx">iceFishing</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="s2">&quot;Fri&quot;</span><span class="o">:</span>
+  <span class="k">case</span> <span class="s2">&quot;Sat&quot;</span><span class="o">:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">day</span> <span class="o">===</span> <span class="nx">bingoDay</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">go</span><span class="p">(</span><span class="nx">bingo</span><span class="p">);</span>
+      <span class="nx">go</span><span class="p">(</span><span class="nx">dancing</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="s2">&quot;Sun&quot;</span><span class="o">:</span>
+    <span class="nx">go</span><span class="p">(</span><span class="nx">church</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="k">default</span><span class="o">:</span>
+    <span class="nx">go</span><span class="p">(</span><span class="nx">work</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+</pre>
+
+
+</div>
+
+          </section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/aaron/uni/ed/620/slides/lab-week1.md">lab-week1.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            7/10
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: lab-week1.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>2.特性与优点—减少代码，易读</h1></header>
+          
+          
+          <section class="part1" style="width:860px; margin-left:10px;">
+<div class="highlight" >
+
+<pre>
+<span class="nv">html = </span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">       &lt;strong&gt;</span>
+<span class="s2">         cup of coffeescript</span>
+<span class="s2">       &lt;/strong&gt;</span>
+<span class="s2">       &quot;&quot;&quot;</span>
+
+<span class="nv">OPERATOR = </span><span class="err">/// ^ (</span>
+  <span class="o">?:</span> <span class="p">[</span><span class="o">-=</span><span class="p">]</span><span class="o">&gt;</span>            <span class="c1"># function</span>
+   <span class="o">|</span> <span class="p">[</span><span class="o">-+*</span><span class="sr">/%&lt;&gt;&amp;|^!?=]= # compound assign/compare</span>
+   <span class="o">|</span> <span class="o">&gt;&gt;&gt;=?</span>            <span class="c1"># zero-fill right shift</span>
+   <span class="o">|</span> <span class="p">([</span><span class="o">-+:</span><span class="p">])</span><span class="err">\</span><span class="mi">1</span>        <span class="c1"># doubles</span>
+   <span class="o">|</span> <span class="p">([</span><span class="o">&amp;|&lt;&gt;</span><span class="p">])</span><span class="err">\</span><span class="mi">2</span><span class="o">=?</span>     <span class="c1"># logic / shift</span>
+   <span class="o">|</span> <span class="err">\</span><span class="o">?</span><span class="err">\</span><span class="p">.</span>             <span class="c1"># soak access</span>
+   <span class="o">|</span> <span class="err">\</span><span class="p">.{</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">}</span>          <span class="c1"># range or splat</span>
+<span class="p">)</span> <span class="o">/</span><span class="err">//</span>
+</pre>
+
+
+<pre>
+<span class="kd">var</span> <span class="nx">html</span><span class="p">;</span>
+
+<span class="nx">html</span> <span class="o">=</span> <span class="s2">&quot;&lt;strong&gt;\n  cup of coffeescript\n&lt;/strong&gt;&quot;</span><span class="p">;</span>
+
+
+
+<span class="kd">var</span> <span class="nx">OPERATOR</span><span class="p">;</span>
+
+<span class="nx">OPERATOR</span> <span class="o">=</span> <span class="sr">/^(?:[-=]&gt;|[-+*\/%&lt;&gt;&amp;|^!?=]=|&gt;&gt;&gt;=?
+|([-+:])\1|([&amp;|&lt;&gt;])\2=?|\?\.|\.{2,3})/</span><span class="p">;</span>
+
+</pre>
+
+
+</div>
+
+          </section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/aaron/uni/ed/620/slides/lab-week1.md">lab-week1.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            7/10
+          </aside>
+        </footer>
+      </div>
+
+      <!-- slide source: lab-week1.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>3.CoffeeScript与jQuery</h1></header>
+          
+          
+          <section class="part1" style="width:860px; margin-left:10px;">
+<div class="highlight" style="height:520px;">
+
+<pre><span class="nv">formValues = </span><span class="p">(</span><span class="nx">elem</span><span class="p">.</span><span class="nx">value</span> <span class="k">for</span> <span class="nx">elem</span> <span class="k">in</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.input&#39;</span><span class="p">))</span> 
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="nv">object = </span><span class="nv">func: </span><span class="o">-&gt;</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#div&#39;</span><span class="p">).</span><span class="nx">click</span> <span class="o">=&gt;</span> 
+    <span class="nx">@element</span><span class="p">.</span><span class="nx">css</span> <span class="nv">color: </span><span class="s1">&#39;red&#39;</span> 
+</pre>
+
+
+<pre>
+<span class="kd">var</span> <span class="nx">elem</span><span class="p">,</span> <span class="nx">formValues</span><span class="p">;</span>  
+<span class="nx">formValues</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>  
+  <span class="kd">var</span> <span class="nx">_i</span><span class="p">,</span> <span class="nx">_len</span><span class="p">,</span> <span class="nx">_ref</span><span class="p">,</span> <span class="nx">_results</span><span class="p">;</span>  
+  <span class="nx">_ref</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.input&#39;</span><span class="p">);</span>  
+  <span class="nx">_results</span> <span class="o">=</span> <span class="p">[];</span>  
+  <span class="k">for</span> <span class="p">(</span><span class="nx">_i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">_len</span> <span class="o">=</span> <span class="nx">_ref</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">_i</span> <span class="o">&lt;</span> <span class="nx">_len</span><span class="p">;</span> <span class="nx">_i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">elem</span> <span class="o">=</span> <span class="nx">_ref</span><span class="p">[</span><span class="nx">_i</span><span class="p">];</span>  
+    <span class="nx">_results</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">elem</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>  
+  <span class="p">}</span>  
+  <span class="k">return</span> <span class="nx">_results</span><span class="p">;</span>  
+<span class="p">})();</span> 
+
+
+<span class="kd">var</span> <span class="nx">object</span><span class="p">;</span>  
+<span class="kd">var</span> <span class="nx">__bind</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">me</span><span class="p">){</span> 
+  <span class="k">return</span> <span class="kd">function</span><span class="p">(){</span> 
+    <span class="k">return</span> <span class="nx">fn</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">me</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span> 
+  <span class="p">};</span> 
+<span class="p">};</span>
+  
+<span class="nx">object</span> <span class="o">=</span> <span class="p">{</span>  
+  <span class="nx">func</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>  
+    <span class="k">return</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#div&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="nx">__bind</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>  
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">css</span><span class="p">({</span>  
+        <span class="nx">color</span><span class="o">:</span> <span class="s1">&#39;red&#39;</span> 
+      <span class="p">});</span>  
+    <span class="p">},</span> <span class="k">this</span><span class="p">));</span>  
+  <span class="p">}</span>  
+<span class="p">};</span> 
+
+</pre>
+
+
+</div>
+
+          </section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/aaron/uni/ed/620/slides/lab-week1.md">lab-week1.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            7/10
+          </aside>
+        </footer>
+      </div>
+
+      <!-- slide source: lab-week1.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>3. CoffeeScript与Backbone.js</h1></header>
+          
+          
+          <section class="part2">
+
+<div class="highlight" style="width: 610px;">
+
+<pre><span class="k">class</span> <span class="nb">window</span><span class="p">.</span><span class="nx">TodoView</span> <span class="k">extends</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span>
+  <span class="nv">tagName: </span> <span class="s2">&quot;li&quot;</span>
+  <span class="nv">template: </span><span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#item-template&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">())</span>
+  <span class="nv">events:</span>
+    <span class="s2">&quot;click .check&quot;</span>              <span class="o">:</span> <span class="s2">&quot;toggleDone&quot;</span>
+    <span class="s2">&quot;dblclick div.todo-content&quot;</span> <span class="o">:</span> <span class="s2">&quot;edit&quot;</span>
+    <span class="s2">&quot;click span.todo-destroy&quot;</span>   <span class="o">:</span> <span class="s2">&quot;clear&quot;</span>
+    <span class="s2">&quot;keypress .todo-input&quot;</span>      <span class="o">:</span> <span class="s2">&quot;updateOnEnter&quot;</span>
+
+<span class="nv">initialize: </span><span class="o">-&gt;</span>
+  <span class="nx">@model</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;change&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">render</span><span class="p">)</span>
+  <span class="vi">@model.view = </span><span class="k">this</span>
+
+<span class="nv">render: </span><span class="o">=&gt;</span>
+  <span class="nx">$</span><span class="p">(</span><span class="nx">@el</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="nx">@model</span><span class="p">.</span><span class="nx">toJSON</span><span class="p">()))</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">setContent</span><span class="p">()</span>
+  <span class="k">return</span> <span class="k">this</span>
+</pre>
+
+</div>
+
+          </section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/aaron/uni/ed/620/slides/lab-week1.md">lab-week1.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            9/10
+          </aside>
+        </footer>
+      </div>
+
+      <!-- slide source: lab-week1.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>3. CoffeeScript与Jasmine</h1></header>
+          
+          
+          <section class="part2">
+
+<div class="highlight" style="width: 610px; height: 570px;">
+
+<pre><span class="nx">describe</span> <span class="s2">&quot;Dish&quot;</span><span class="p">,</span> <span class="o">-&gt;</span>
+
+  <span class="nx">describe</span> <span class="s2">&quot;constructor&quot;</span><span class="p">,</span> <span class="o">-&gt;</span>
+
+    <span class="nx">beforeEach</span> <span class="o">-&gt;</span>
+      <span class="vi">@dish = </span><span class="k">new</span> <span class="nx">Dish</span> <span class="s1">&#39;Sirloin Steak $18.99 mains&#39;</span>
+
+    <span class="nx">it</span> <span class="s2">&quot;extracts title&quot;</span><span class="p">,</span> <span class="o">-&gt;</span>
+      <span class="p">(</span><span class="nx">expect</span> <span class="nx">@dish</span><span class="p">.</span><span class="nx">title</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="s1">&#39;Sirloin Steak&#39;</span><span class="p">)</span>
+
+    <span class="nx">it</span> <span class="s2">&quot;extracts price&quot;</span><span class="p">,</span> <span class="o">-&gt;</span>
+      <span class="p">(</span><span class="nx">expect</span> <span class="nx">@dish</span><span class="p">.</span><span class="nx">price</span><span class="p">.</span><span class="nx">cents</span><span class="p">).</span><span class="nx">toEqual</span> <span class="mi">1899</span>
+      <span class="p">(</span><span class="nx">expect</span> <span class="nx">@dish</span><span class="p">.</span><span class="nx">price</span><span class="p">.</span><span class="nx">toString</span><span class="p">()).</span><span class="nx">toEqual</span> <span class="s1">&#39;$18.99&#39;</span>
+
+    <span class="nx">it</span> <span class="s2">&quot;extracts tag&quot;</span><span class="p">,</span> <span class="o">-&gt;</span>
+      <span class="p">(</span><span class="nx">expect</span> <span class="nx">@dish</span><span class="p">.</span><span class="nx">tag</span><span class="p">).</span><span class="nx">toEqual</span> <span class="s1">&#39;mains&#39;</span>
+
+  <span class="nx">describe</span> <span class="s2">&quot;constructor with partial data&quot;</span><span class="p">,</span> <span class="o">-&gt;</span>
+
+    <span class="nx">beforeEach</span> <span class="o">-&gt;</span>
+      <span class="vi">@dish = </span><span class="k">new</span> <span class="nx">Dish</span> <span class="s1">&#39;Sirloin Steak $18.99&#39;</span>
+
+    <span class="nx">it</span> <span class="s2">&quot;extracts title&quot;</span><span class="p">,</span> <span class="o">-&gt;</span>
+      <span class="p">(</span><span class="nx">expect</span> <span class="nx">@dish</span><span class="p">.</span><span class="nx">title</span><span class="p">).</span><span class="nx">toEqual</span> <span class="s1">&#39;Sirloin Steak&#39;</span>
+
+    <span class="nx">it</span> <span class="s2">&quot;extracts price&quot;</span><span class="p">,</span> <span class="o">-&gt;</span>
+      <span class="p">(</span><span class="nx">expect</span> <span class="nx">@dish</span><span class="p">.</span><span class="nx">price</span><span class="p">.</span><span class="nx">toString</span><span class="p">()).</span><span class="nx">toEqual</span> <span class="s1">&#39;$18.99&#39;</span>
+
+    <span class="nx">it</span> <span class="s2">&quot;leaves tag blank&quot;</span><span class="p">,</span> <span class="o">-&gt;</span>
+      <span class="p">(</span><span class="nx">expect</span> <span class="nx">@dish</span><span class="p">.</span><span class="nx">tag</span><span class="p">).</span><span class="nx">toEqual</span> <span class="s1">&#39;&#39;</span>
+</pre>
+
+</div>
+
+          </section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/aaron/uni/ed/620/slides/lab-week1.md">lab-week1.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            9/10
+          </aside>
+        </footer>
+      </div>
+
+  </div>
+  
+  <div id="toc" class="sidebar hidden">
+    <h2>Table of Contents</h2>
+    <table>
+      <caption>Table of Contents</caption>
+            
+      <tr id="toc-row-1">
+        <th><a href="#slide1">Engineering for Internet Applications <br> SWEN90002/SINF90006 <br> Lab Week 1</a></th>
+        <td><a href="#slide1">1</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-2">
+        <th><a href="#slide2">General Information</a></th>
+        <td><a href="#slide2">2</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-3">
+        <th><a href="#slide3">Lab Reports</a></th>
+        <td><a href="#slide3">3</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-4">
+        <th><a href="#slide4">Lab Week 1 Overview</a></th>
+        <td><a href="#slide4">4</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-5">
+        <th><a href="#slide5">1. Computer Networks TCP/UDP/IP</a></th>
+        <td><a href="#slide5">5</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-6">
+        <th><a href="#slide6">1. Computer Networks cont...</a></th>
+        <td><a href="#slide6">6</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-7">
+        <th><a href="#slide7">1. Computer Networks cont...</a></th>
+        <td><a href="#slide7">7</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-8">
+        <th><a href="#slide8">2. Java refresher</a></th>
+        <td><a href="#slide8">8</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-9">
+        <th><a href="#slide9">3. Java refresher cont...</a></th>
+        <td><a href="#slide9">9</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-10">
+        <th><a href="#slide10">4. HTML refresher</a></th>
+        <td><a href="#slide10">10</a></td>
+      </tr>
+      
+      
+    </table>
+  </div>
+  
+  <div id="help" class="sidebar hidden">
+    <h2>Help</h2>
+    <table>
+      <caption>Help</caption>
+      <tr>
+        <th>Table of Contents</th>
+        <td>t</td>
+      </tr>
+      <tr>
+        <th>Source Files</th>
+        <td>s</td>
+      </tr>
+      <tr>
+        <th>Slide Numbers</th>
+        <td>n</td>
+      </tr>
+      <tr>
+        <th>Notes</th>
+        <td>2</td>
+      </tr>
+      <tr>
+        <th>Help</th>
+        <td>h</td>
+      </tr>
+    </table>
+  </div>
+  <script>main()</script>
+</body>
+</html>
